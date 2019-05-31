@@ -17,4 +17,19 @@ resource "packet_device" "fcs" {
     user        = "root"
     private_key = "${file("${var.private_key_filename}")}"
   }
+
+  provisioner "file" {
+    source      = "consul_install.sh"
+    destination = "consul_install.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "ssh-keygen -A",
+      "apt-get install fortune -y",
+      "bash consul_install.sh > consul_install.out",
+    ]
+  }
 }
+
+
