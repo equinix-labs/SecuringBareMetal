@@ -63,7 +63,8 @@ resource "packet_device" "fcs" {
       "chmod 755 /usr/local/bin/StartConsul.sh",
       "screen -dmS consul /usr/local/bin/StartConsul.sh",
       "chmod 755 /usr/local/bin/StartFortune.sh",
-      "screen -dmS fortune /usr/local/bin/StartFortune.sh"
+      "screen -dmS fortune /usr/local/bin/StartFortune.sh",
+      "sleep 10"
     ]
   }
 }

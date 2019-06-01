@@ -46,7 +46,8 @@ resource "packet_device" "web" {
     inline = [
       "bash consul_install.sh > consul_install.out",
       "chmod 755 /usr/local/bin/StartConsul.sh",
-      "screen -dmS consul /usr/local/bin/StartConsul.sh"
+      "screen -dmS consul /usr/local/bin/StartConsul.sh",
+      "sleep 10"
     ]
   }
 }
