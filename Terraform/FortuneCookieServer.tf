@@ -38,6 +38,11 @@ resource "packet_device" "fcs" {
   }
 
   provisioner "file" {
+    source      = "FortuneSecureService.json"
+    destination = "FortuneSecureService.json"
+  }
+
+  provisioner "file" {
     source      = "StartConsul.sh"
     destination = "/usr/local/bin/StartConsul.sh"
   }
