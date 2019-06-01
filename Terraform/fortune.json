@@ -1,0 +1,6 @@
+{
+  "service": {
+      "name": "fortune",
+      "port": 8181
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "data_dir": "/opt/consul",
+  "log_level": "INFO",
+  "server": false,
+  "ui": true,
+  "connect": {
+    "enabled": true
+  }
+}

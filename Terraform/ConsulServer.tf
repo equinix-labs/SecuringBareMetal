@@ -1,4 +1,4 @@
-resource "packet_device" "web" {
+resource "packet_device" "consul_server" {
 
   depends_on       = ["packet_ssh_key.host_key"]
 
@@ -6,12 +6,14 @@ resource "packet_device" "web" {
   facilities       = "${var.facilities}"
   plan             = "${var.plan}"
   operating_system = "${var.operating_system}"
-  hostname         = "${format("web-%02d", count.index)}"
+  hostname         = "${format("consul-%02d", count.index)}"
 
-  count            = "${var.webserver_count}"
+  # should be an odd number
+  # > 1 will require update to the consul config file bootstrap values
+  count            = "1"
 
   billing_cycle    = "hourly"
-  tags             = ["${var.build}","web"]
+  tags             = ["${var.build}","consul_server"]
 
   connection {
     user        = "root"
@@ -22,14 +24,14 @@ resource "packet_device" "web" {
     inline = [
       "ssh-keygen -A",
       "apt-get update -y >> apt.out",
-      "apt-get install nginx tcpflow dnsutils zip -y >> apt.out",
+      "apt-get install fortune tcpflow dnsutils zip -y >> apt.out",
       "mkdir -p /etc/consul.d",
     ]
   }
 
   provisioner "file" {
-    source      = "consul-client-config.json"
-    destination = "/etc/consul.d/consul-client-config.json"
+    source      = "consul-server-config.json"
+    destination = "/etc/consul.d/consul-server-config.json"
   }
 
   provisioner "file" {

@@ -1,7 +1,3 @@
-#variable "auth_token" {
-#  description = "Your Packet API key"
-#}
-#
 variable "packet_project_id" {
   description = "Your Packet Project ID"
 }

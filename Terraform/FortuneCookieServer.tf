@@ -18,6 +18,30 @@ resource "packet_device" "fcs" {
     private_key = "${file("${var.private_key_filename}")}"
   }
 
+  provisioner "remote-exec" {
+    inline = [
+      "ssh-keygen -A",
+      "apt-get update -y >> apt.out",
+      "apt-get install fortune tcpflow dnsutils zip -y >> apt.out",
+      "mkdir -p /etc/consul.d",
+    ]
+  }
+
+  provisioner "file" {
+    source      = "consul-client-config.json"
+    destination = "/etc/consul.d/consul-client-config.json"
+  }
+
+  provisioner "file" {
+    source      = "StartConsul.sh"
+    destination = "/usr/local/bin/StartConsul.sh"
+  }
+
+  provisioner "file" {
+    source      = "StartFortune.sh"
+    destination = "/usr/local/bin/StartFortune.sh"
+  }
+
   provisioner "file" {
     source      = "consul_install.sh"
     destination = "consul_install.sh"
@@ -25,11 +49,11 @@ resource "packet_device" "fcs" {
 
   provisioner "remote-exec" {
     inline = [
-      "ssh-keygen -A",
-      "apt-get install fortune -y",
       "bash consul_install.sh > consul_install.out",
+      "chmod 755 /usr/local/bin/StartConsul.sh",
+      "screen -dmS consul /usr/local/bin/StartConsul.sh"
+      "chmod 755 /usr/local/bin/StartFortune.sh",
+      "screen -dmS fortune /usr/local/bin/StartFortune.sh"
     ]
   }
 }
-
-

@@ -1,0 +1,11 @@
+{
+  "data_dir": "/opt/consul",
+  "log_level": "INFO",
+  "bootstrap": true,
+  "bootstrap_expect": 1,
+  "server": true,
+  "ui": true,
+  "connect": {
+    "enabled": true
+  }
+}
