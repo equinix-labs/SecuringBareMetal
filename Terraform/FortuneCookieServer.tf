@@ -56,7 +56,7 @@ resource "packet_device" "fcs" {
     inline = [
       "bash consul_install.sh > consul_install.out",
       "chmod 755 /usr/local/bin/StartConsul.sh",
-      "screen -dmS consul /usr/local/bin/StartConsul.sh"
+      "screen -dmS consul /usr/local/bin/StartConsul.sh",
       "chmod 755 /usr/local/bin/StartFortune.sh",
       "screen -dmS fortune /usr/local/bin/StartFortune.sh"
     ]
