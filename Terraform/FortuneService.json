@@ -1,7 +1,6 @@
 {
   "service": {
       "name": "fortune",
-      "port": 8181,
-#      "connect": { "sidecar_service": {} }
+      "port": 8181
   }
 }
