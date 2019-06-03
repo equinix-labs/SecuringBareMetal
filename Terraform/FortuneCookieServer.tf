@@ -11,7 +11,6 @@ resource "packet_device" "fcs" {
   count            = "${var.fcs_count}"
 
   billing_cycle    = "hourly"
-  tags             = ["${var.build}","fcs"]
 
   connection {
     user        = "root"

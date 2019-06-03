@@ -1,7 +1,7 @@
 
 resource "null_resource" "consul_join_fortune" {
 
-  depends_on       = ["packet_device.consul_server"]
+  depends_on       = ["packet_device.consul_vault_server"]
 
   count            = "${var.fcs_count}"
 
@@ -13,7 +13,7 @@ resource "null_resource" "consul_join_fortune" {
 
   provisioner "remote-exec" {
     inline = [
-      "consul join ${packet_device.consul_server.access_private_ipv4}"
+      "consul join ${packet_device.consul_vault_server.access_private_ipv4}"
     ]
   }
 }
@@ -21,7 +21,7 @@ resource "null_resource" "consul_join_fortune" {
 
 resource "null_resource" "consul_join_web" {
 
-  depends_on       = ["packet_device.consul_server"]
+  depends_on       = ["packet_device.consul_vault_server"]
 
   count            = "${var.webserver_count}"
 
@@ -33,7 +33,7 @@ resource "null_resource" "consul_join_web" {
 
   provisioner "remote-exec" {
     inline = [
-      "consul join ${packet_device.consul_server.access_private_ipv4}"
+      "consul join ${packet_device.consul_vault_server.access_private_ipv4}"
     ]
   }
 }
