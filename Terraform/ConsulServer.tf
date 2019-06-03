@@ -23,8 +23,9 @@ resource "packet_device" "consul_server" {
   provisioner "remote-exec" {
     inline = [
       "ssh-keygen -A",
+      "sudo apt-add-repository ppa:zanchey/asciinema -y",
       "apt-get update -y >> apt.out",
-      "apt-get install fortune tcpflow dnsutils zip -y >> apt.out",
+      "apt-get install fortune tcpflow dnsutils zip asciinema -y >> apt.out",
       "mkdir -p /etc/consul.d",
     ]
   }
