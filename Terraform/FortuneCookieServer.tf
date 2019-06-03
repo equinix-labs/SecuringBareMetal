@@ -22,13 +22,11 @@ resource "packet_device" "fcs" {
       "ssh-keygen -A",
       "sudo apt-add-repository ppa:zanchey/asciinema -y",
       "apt-get update -y >> apt.out",
-      "DEBIAN_FRONTEND=noninteractive apt-get install tcpflow dnsutils zip asciinema lvm2 cryptsetup -y >> apt.out",
+      "DEBIAN_FRONTEND=noninteractive apt-get install tcpflow dnsutils zip asciinema encfs -y >> apt.out",
       "mkdir -p /etc/consul.d",
+      "mkdir -p /usr/share/games/fortunes-raw",
       "mkdir -p /usr/share/games/fortunes",
-      "dd if=/dev/zero of=/opt/fortune.img bs=1M count=1200",
-      "losetup /dev/loop0 /opt/fortune.img",
-      "mkfs.ext4 /dev/loop0",
-      "mount /dev/loop0 /usr/share/games/fortunes",
+      "echo topsecret | encfs -S /usr/share/games/fortunes-raw /usr/share/games/fortunes",
       "DEBIAN_FRONTEND=noninteractive apt-get install fortune -y >> apt.out",
     ]
   }
