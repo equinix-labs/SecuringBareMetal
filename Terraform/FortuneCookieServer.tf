@@ -23,7 +23,7 @@ resource "packet_device" "fcs" {
       "ssh-keygen -A",
       "sudo apt-add-repository ppa:zanchey/asciinema -y",
       "apt-get update -y >> apt.out",
-      "apt-get install fortune tcpflow dnsutils zip asciinema -y >> apt.out",
+      "DEBIAN_FRONTEND=noninteractive apt-get install fortune tcpflow dnsutils zip asciinema lvm2 cryptsetup -y >> apt.out",
       "mkdir -p /etc/consul.d",
     ]
   }
