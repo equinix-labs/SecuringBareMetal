@@ -1,5 +1,5 @@
-output "web servers" {
-  value = ["${packet_device.web.*.access_public_ipv4}"]
+output "fortune cookie consumers" {
+  value = ["${packet_device.fcc.*.access_public_ipv4}"]
 }
 
 output "fortune cookie servers" {
