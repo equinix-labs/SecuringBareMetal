@@ -19,16 +19,16 @@ resource "null_resource" "consul_join_fortune" {
 }
 
 
-resource "null_resource" "consul_join_web" {
+resource "null_resource" "consul_join_fcc" {
 
   depends_on       = ["packet_device.consul_vault_server"]
 
-  count            = "${var.webserver_count}"
+  count            = "${var.fcc_count}"
 
   connection {
     user        = "root"
     private_key = "${file("${var.private_key_filename}")}"
-    host        = "${element(packet_device.web.*.access_public_ipv4,count.index)}"
+    host        = "${element(packet_device.fcc.*.access_public_ipv4,count.index)}"
   }
 
   provisioner "remote-exec" {
