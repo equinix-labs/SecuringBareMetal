@@ -23,8 +23,8 @@ variable "facilities" {
   default     = ["ewr1"]
 }
 
-variable "webserver_count" {
-  description = "Number of webserver bare metal hosts to spin up"
+variable "fcc_count" {
+  description = "Number of fortune cookie consumer bare metal hosts to spin up"
   default     = "1"
 }
 
