@@ -6,7 +6,9 @@ Best Practices for Securing Services on Bare Metal
 
 ## Initial Unsecure Deployment
 
+
 Exposed service
+```
 +---------------------------------------+                              +--------------------------------------+
 |                                       |                              |                                      |
 | Fortune Cookie Service (FCS)          |                              | Fortune Cookie Consumer (FCC)        |
@@ -18,11 +20,12 @@ Exposed service
 |                                       |    unencrypted traffic       |                                      |
 |                                       |                              |                                      |
 +---------------------------------------+                              +--------------------------------------+
-
+```
 
 
 ## Man in the Middle Attack
 
+```
                         Man in the Middle
                         TCPDump/TCPFlow
 +------------------+    "Reads" traffic           +----------------+
@@ -36,6 +39,7 @@ Exposed service
 |                  |                              |                |
 |                  |                              |                |
 +------------------+                              +----------------+
+```
 
 ## The Service Mesh Server
 
