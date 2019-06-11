@@ -6,7 +6,7 @@ resource "packet_device" "consul_vault_server" {
   facilities       = "${var.facilities}"
   plan             = "${var.plan}"
   operating_system = "${var.operating_system}"
-  hostname         = "${format("consul-%02d", count.index)}"
+  hostname         = "${format("consul%02d", count.index)}"
 
   # should be an odd number
   # > 1 will require update to the consul config file bootstrap values
@@ -26,6 +26,7 @@ resource "packet_device" "consul_vault_server" {
       "apt-get update -y >> apt.out",
       "apt-get install fortune tcpflow dnsutils zip asciinema -y >> apt.out",
       "mkdir -p /etc/consul.d",
+      "mkdir -p /etc/vault.d",
     ]
   }
 
@@ -54,8 +55,13 @@ resource "packet_device" "consul_vault_server" {
   }
 
   provisioner "file" {
-    source      = "StartVault.sh"
-    destination = "/usr/local/bin/StartVault.sh"
+    source      = "vault-server-config.json"
+    destination = "/etc/vault.d/vault-server-config.json"
+  }
+
+  provisioner "file" {
+    source      = "StartVaultServer.sh"
+    destination = "/usr/local/bin/StartVaultServer.sh"
   }
 
   provisioner "file" {
@@ -66,8 +72,8 @@ resource "packet_device" "consul_vault_server" {
   provisioner "remote-exec" {
     inline = [
       "bash vault_install.sh > vault_install.out",
-      "chmod 755 /usr/local/bin/StartVault.sh",
-      "screen -dmS vault /usr/local/bin/StartVault.sh",
+      "chmod 755 /usr/local/bin/StartVaultServer.sh",
+      "screen -dmS vault /usr/local/bin/StartVaultServer.sh",
       "sleep 10"
     ]
   }

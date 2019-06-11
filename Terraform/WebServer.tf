@@ -6,7 +6,7 @@ resource "packet_device" "web" {
   facilities       = "${var.facilities}"
   plan             = "${var.plan}"
   operating_system = "${var.operating_system}"
-  hostname         = "${format("web-%02d", count.index)}"
+  hostname         = "${format("web%02d", count.index)}"
 
   count            = "${var.webserver_count}"
 

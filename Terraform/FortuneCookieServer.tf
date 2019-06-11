@@ -6,7 +6,7 @@ resource "packet_device" "fcs" {
   facilities       = "${var.facilities}"
   plan             = "${var.plan}"
   operating_system = "${var.operating_system}"
-  hostname         = "${format("fcs-%02d", count.index)}"
+  hostname         = "${format("fcs%02d", count.index)}"
 
   count            = "${var.fcs_count}"
 
@@ -24,6 +24,7 @@ resource "packet_device" "fcs" {
       "apt-get update -y >> apt.out",
       "DEBIAN_FRONTEND=noninteractive apt-get install tcpflow dnsutils zip asciinema encfs -y >> apt.out",
       "mkdir -p /etc/consul.d",
+      "mkdir -p /etc/vault.d",
       "mkdir -p /usr/share/games/fortunes-raw",
       "mkdir -p /usr/share/games/fortunes",
       "echo topsecret | encfs -S /usr/share/games/fortunes-raw /usr/share/games/fortunes",
@@ -68,6 +69,30 @@ resource "packet_device" "fcs" {
       "screen -dmS consul /usr/local/bin/StartConsul.sh",
       "chmod 755 /usr/local/bin/StartFortune.sh",
       "screen -dmS fortune /usr/local/bin/StartFortune.sh",
+      "sleep 10"
+    ]
+  }
+
+  provisioner "file" {
+    source      = "vault-client-config.json"
+    destination = "/etc/vault.d/vault-client-config.json"
+  }
+
+  provisioner "file" {
+    source      = "StartVaultClient.sh"
+    destination = "/usr/local/bin/StartVaultClient.sh"
+  }
+
+  provisioner "file" {
+    source      = "vault_install.sh"
+    destination = "vault_install.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "bash vault_install.sh > vault_install.out",
+      "chmod 755 /usr/local/bin/StartVaultClient.sh",
+      "screen -dmS vault /usr/local/bin/StartVaultClient.sh",
       "sleep 10"
     ]
   }
