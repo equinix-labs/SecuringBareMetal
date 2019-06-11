@@ -7,5 +7,5 @@ output "fortune cookie servers" {
 }
 
 output "consul vault_server" {
-  value = ["${packet_device.consul_vault_server.access_public_ipv4}"]
+  value = ["${packet_device.consul_vault_server.*.access_public_ipv4}"]
 }

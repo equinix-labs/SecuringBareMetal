@@ -23,6 +23,11 @@ variable "facilities" {
   default     = ["ewr1"]
 }
 
+variable "consul_vault_count" {
+  description = "Number of Consul/Vault server bare metal hosts to spin up"
+  default     = "3"
+}
+
 variable "fcc_count" {
   description = "Number of fortune cookie consumer bare metal hosts to spin up"
   default     = "1"
@@ -30,7 +35,7 @@ variable "fcc_count" {
 
 variable "fcs_count" {
   description = "Number of fortune cookie service bare metal hosts to spin up"
-  default     = "2"
+  default     = "1"
 }
 
 variable "plan" {

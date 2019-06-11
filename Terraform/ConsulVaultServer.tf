@@ -10,7 +10,7 @@ resource "packet_device" "consul_vault_server" {
 
   # should be an odd number
   # > 1 will require update to the consul config file bootstrap values
-  count            = "1"
+  count            = "${var.consul_vault_count}"
 
   billing_cycle    = "hourly"
 
