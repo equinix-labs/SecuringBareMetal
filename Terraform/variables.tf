@@ -23,8 +23,13 @@ variable "facilities" {
   default     = ["ewr1"]
 }
 
-variable "consul_vault_count" {
-  description = "Number of Consul/Vault server bare metal hosts to spin up"
+variable "consul_count" {
+  description = "Number of Consul server bare metal hosts to spin up"
+  default     = "3"
+}
+
+variable "vault_count" {
+  description = "Number of Vault server bare metal hosts to spin up"
   default     = "3"
 }
 
