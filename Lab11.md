@@ -2,16 +2,15 @@
 
 ## Fortune Cookie Service
 
-
-
+The Fortune Cookie (Micro) Service provides insightful fortunes via a TCP connection. It is unauthenticated and unencrypted.
 
 ```
 socat -v tcp-l:8181,bind=0,fork exec:/usr/games/fortune
 ```
 
+### Testing the FCS
 
-
-### Testing the Service
+Netcat can be used to validate that the FCS is working properly.
 
 ```
 studarus@labs:~$ nc fcs00 8181
@@ -24,9 +23,9 @@ studarus@labs:~$ nc fcs00 8181
 You love peace.
 ```
 
-
 ### Deployed Infrastructure
 
+One bare metal server is deployed running the FCS and a second as the micro service consumer.
 
 ```
 +---------------------------------------+                              +--------------------------------------+
@@ -44,22 +43,7 @@ You love peace.
 
 ### Man in the Middle Attack
 
-```
-                        Man in the Middle
-                        TCPDump/TCPFlow
-+------------------+    "Reads" traffic           +----------------+
-|                  |             +                |                |
-|                  |             |                |                |
-| fcs-00           |             |                | fcc-00         |
-|                  |             |                |                |
-|                  |             v                |                |
-|                  +-------------+----------------+                |
-|                  |     unencrypted traffic      |                |
-|                  |                              |                |
-|                  |                              |                |
-+------------------+                              +----------------+
-```
-
+Since this traffic runs across public network infrastructure in an unencrypted format it is vulnerable to a "man in the middle" snooping and possible modification.
 
 ```
                         Man in the Middle
@@ -76,6 +60,8 @@ You love peace.
 |                  |                              |                |
 +------------------+                              +----------------+
 ```
+
+Consider this execution of the micro service...
 
 ```
 studarus@labs:~$ nc fcs00 8181
@@ -85,6 +71,7 @@ lend money.
                 -- Mark Twain, "Pudd'nhead Wilson's Calendar"
 ```
 
+A TCP Dump session was able to view this data as it was transmitted across the network. Since we consider fortunes to be private and confidential, this is a serious security issue that needs to be addressed!
 ```
 01:20:20.000084 IP (tos 0x0, ttl 56, id 48043, offset 0, flags [DF], proto TCP (6), length 261)
     fcs00.8181 > 139.178.82.107.53396: Flags [P.], cksum 0xc307 (correct), seq 666152399:666152608, ack 300437032, win 114, options [nop,nop,TS val 152639084 ecr 1775708429], length 209
