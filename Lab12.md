@@ -1,29 +1,10 @@
 # Lab 12 - 
 
-## Starting Consul
+## Starting the Consul Server
 
-### Bootstrap First Instance
+We've spun up three bare metal servers with Consul, the service mesh software, installed. They will need to be clustered together for reliability. This involves bootstrapping the first server and then joining the other two.
 
-### Joining Additional Agents
-
-# Introducing the Service Mesh Agent and Server
-
-
-### The Service Mesh Agent
-
-```
-+--------+-----------+                   +------------+----------+
-|        |  fcs      |                   |  fcc       |          |
-|  fcs00 |  8181     |                   |            | fcc00    |
-|        +-----------+                   +------------+          |
-|                    |                   |                       |
-|        +-----------+                   +------------+          |
-|        |fcs-sidecar|                   | fcc-sidecar|          |
-|        |           |                   |            |          |
-+--------------------+                   +------------+----------+
-```
-
-### The Service Mesh Server
+As the software clusters itself, it'll elect a leader which handles all communications and passes along state to the other Consul servers.
 
 ```
      +------------------------------+
@@ -43,9 +24,11 @@
 +-----------------------------+
 ```
 
-### Leader Elections
+## The Service Mesh Agent
 
-### Joining Service Mesh Agents to Server
+On the client side (FCS and FCC), the service mesh agent is run. This agent will communicate to the Consul elected leader.
+
+
 ```
 +-------+------------+                   +------------+----------+
 |       |   fcs      |                   |  fcc       |          |
@@ -53,7 +36,7 @@
 |       +------------+                   +------------+          |
 |                    |                   |                       |
 |       +------------+                   +------------+          |
-|       | fcs-sidecar|                   | fcc-sidecar|          |
+|       |            |                   |            |          |
 |       | SM Agent   |                   | SM Agent   |          |
 +-------+-----+------+                   +---------+--+----------+
               |                                    |
@@ -65,11 +48,9 @@
                     +---------------------------+
 ```
 
+## The Side Car
 
-
-## Registering the Fortune Cookie Service
-
-## Validating Encryption
+A side car is started up for each service and consumer that acts as a proxy authenticating and encrypting traffic across the network.
 
 ```
 +--------+-----------+                   +------------+----------+
