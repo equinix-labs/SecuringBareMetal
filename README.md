@@ -31,6 +31,13 @@ Employ TLS (Transport Layer Security) using asymetrical and symetrical encryptio
 #
 
 
+## Security Problems
+
+### Legacy Systems
+
+### Bare Metal
+
+## Why a Service Mesh
 
 
 
