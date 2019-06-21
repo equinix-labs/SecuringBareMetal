@@ -18,4 +18,11 @@ As the physical servers "fail", the Service Mesh will discover and remove that i
 
 ## Next Steps
 
-Once you're done, proceed to [Lab15](Lab15.md)
+You've made it to the end!
+
+Where do we go from here?
+
+* Service Access Control
+* Authentication
+* Key Rotation
+* Encryption on Disk

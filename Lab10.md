@@ -1,6 +1,5 @@
 # Lab 10 - Physical Infrastructure Deployment
 
-
 ## Background
 
 Terraform is used to deploy the physical infrastructure and install the required software components on the deployed server. The initial deployment will consist of 5 bare metal hosts with 3 being redundant Consol service mesh servers, one a micro service (Fortune Cookie Server), and the one being a micro service consumer (Fortune Cookie Consumer).
