@@ -6,11 +6,12 @@ Zero Trust is an information security mantra that implements security controls s
 
 Securing Data in Motion as it traverses the physical network can be accomplished with a Service Mesh. This layer of software introduces client and server side authentication and encryption using TLS (transport layer security). The steps below cover the deployment and setup of the Service Mesh atop bare metal infrastructure as well as the securing of the Fortune Cookie Micro Service through the Service Mesh.
 
-Physical Infrastructure Deployment for a Bare Metal Service Mesh [ServiceMesh10](ServiceMesh10.md)
-The Micro Services [ServiceMesh11](ServiceMesh11.md)
-Bringing the Service Mesh Online [ServiceMesh12](ServiceMesh12.md)
-Securing the Micro Services with the Service Mesh [ServiceMesh13](ServiceMesh13.md)
-Micro Service Resilience through the Service Mesh [ServiceMesh14](ServiceMesh14.md)
+
+* Physical Infrastructure Deployment for a Bare Metal Service Mesh [ServiceMesh10](ServiceMesh10.md)
+* The Micro Services [ServiceMesh11](ServiceMesh11.md)
+* Bringing the Service Mesh Online [ServiceMesh12](ServiceMesh12.md)
+* Securing the Micro Services with the Service Mesh [ServiceMesh13](ServiceMesh13.md)
+* Micro Service Resilience through the Service Mesh [ServiceMesh14](ServiceMesh14.md)
 
 ## Client and Service Side Authentication with Service Mesh
 
