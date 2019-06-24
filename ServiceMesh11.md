@@ -1,4 +1,4 @@
-# Lab 11 - The Micro Services
+# Service Mesh 11 - The Micro Services
 
 ## Fortune Cookie Service
 

@@ -1,4 +1,4 @@
-# Lab 10 - Physical Infrastructure Deployment
+# Service Mesh 10 - Physical Infrastructure Deployment for a Bare Metal Service Mesh
 
 ## Background
 

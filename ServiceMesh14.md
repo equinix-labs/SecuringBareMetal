@@ -1,4 +1,4 @@
-# Lab 14 - Service Resilience
+# Service Mesh 14 - Micro Service Resilience through the Service Mesh
 
 ## Managing Service Failure
 

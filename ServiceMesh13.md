@@ -1,4 +1,4 @@
-# Lab 13 - Securing the Services
+# Service Mesh 13 - Securing the Micro Services with the Service Mesh
 
 With the Service Mesh server and client agent running, the micro service can now be secured.
 

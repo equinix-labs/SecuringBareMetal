@@ -1,4 +1,4 @@
-# Lab 12 - Service Mesh Startup
+# Service Mesh 12 - Bringing the Service Mesh Online
 
 ## Starting the Consul Server
 
