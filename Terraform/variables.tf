@@ -30,7 +30,7 @@ variable "consul_count" {
 
 variable "vault_count" {
   description = "Number of Vault server bare metal hosts to spin up"
-  default     = "3"
+  default     = "0"
 }
 
 variable "fcc_count" {
@@ -40,7 +40,7 @@ variable "fcc_count" {
 
 variable "fcs_count" {
   description = "Number of fortune cookie service bare metal hosts to spin up"
-  default     = "1"
+  default     = "3"
 }
 
 variable "plan" {
