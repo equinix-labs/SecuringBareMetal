@@ -4,7 +4,7 @@
 
 The Fortune Cookie (Micro) Service provides insightful fortunes via a TCP connection. It is unauthenticated and unencrypted.
 
-```
+```sh
 socat -v tcp-l:8181,bind=0,fork exec:/usr/games/fortune
 ```
 
@@ -12,7 +12,7 @@ socat -v tcp-l:8181,bind=0,fork exec:/usr/games/fortune
 
 Netcat can be used to validate that the FCS is working properly.
 
-```
+```sh
 studarus@labs:~$ nc fcs00 8181
 You will have long and healthy life.
 studarus@labs:~$ nc fcs00 8181
@@ -27,7 +27,7 @@ You love peace.
 
 One bare metal server is deployed running the FCS and a second as the micro service consumer.
 
-```
+```console
 +---------------------------------------+                              +--------------------------------------+
 |                                       |                              |                                      |
 | Fortune Cookie Service (FCS)          |                              | Fortune Cookie Consumer (FCC)        |
@@ -45,7 +45,7 @@ One bare metal server is deployed running the FCS and a second as the micro serv
 
 Since this traffic runs across public network infrastructure in an unencrypted format it is vulnerable to a "man in the middle" snooping and possible modification.
 
-```
+```console
                         Man in the Middle
                         TCPDump/TCPFlow
 +------------------+    "Reads" traffic           +----------------+
@@ -63,7 +63,7 @@ Since this traffic runs across public network infrastructure in an unencrypted f
 
 Consider this execution of the micro service...
 
-```
+```sh
 studarus@labs:~$ nc fcs00 8181
 The holy passion of Friendship is of so sweet and steady and loyal and
 enduring a nature that it will last through a whole lifetime, if not asked to
@@ -72,7 +72,8 @@ lend money.
 ```
 
 A TCP Dump session was able to view this data as it was transmitted across the network. Since we consider fortunes to be private and confidential, this is a serious security issue that needs to be addressed!
-```
+
+```console
 01:20:20.000084 IP (tos 0x0, ttl 56, id 48043, offset 0, flags [DF], proto TCP (6), length 261)
     fcs00.8181 > 139.178.82.107.53396: Flags [P.], cksum 0xc307 (correct), seq 666152399:666152608, ack 300437032, win 114, options [nop,nop,TS val 152639084 ecr 1775708429], length 209
         0x0000:  4500 0105 bbab 4000 3806 b23d 934b 62a1  E.....@.8..=.Kb.
@@ -96,4 +97,4 @@ A TCP Dump session was able to view this data as it was transmitted across the n
 
 ## Next Steps
 
-Once you're done, proceed to [Lab12](Lab12.md)
+Once you're done, proceed to [ServiceMesh12](ServiceMesh12.md)

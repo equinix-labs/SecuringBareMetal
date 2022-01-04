@@ -17,10 +17,10 @@ variable "private_key_filename" {
   default     = "~/.ssh/id_rsa"
 }
 
-# for a full list of facilities, see: https://metal.equinix.com/developers/docs/locations/facilities/
-variable "facilities" {
-  description = "Prioritized list of facilities (data center) to deploy bare metal hosts"
-  default     = ["sv15"]
+# for a full list of metros, see: https://metal.equinix.com/developers/docs/locations/metros/
+variable "metro" {
+  description = "Metro to deploy bare metal hosts"
+  default     = "sv"
 }
 
 variable "consul_count" {

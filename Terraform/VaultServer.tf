@@ -3,7 +3,7 @@ resource "metal_device" "vault_server" {
   depends_on = [metal_ssh_key.host_key]
 
   project_id       = var.metal_project_id
-  facilities       = var.facilities
+  metro            = var.metro
   plan             = var.plan
   operating_system = var.operating_system
   hostname         = format("vault%02d", count.index)
@@ -17,7 +17,7 @@ resource "metal_device" "vault_server" {
   connection {
     user        = "root"
     host        = self.access_public_ipv4
-    private_key = file("${var.private_key_filename}")
+    private_key = file(var.private_key_filename)
   }
 
   provisioner "remote-exec" {

@@ -7,7 +7,7 @@ resource "null_resource" "consul_join_server" {
 
   connection {
     user        = "root"
-    private_key = file("${var.private_key_filename}")
+    private_key = file(var.private_key_filename)
     host        = element(metal_device.consul_server.*.access_public_ipv4, count.index)
   }
 
@@ -25,7 +25,7 @@ resource "null_resource" "consul_join_fortune" {
 
   connection {
     user        = "root"
-    private_key = file("${var.private_key_filename}")
+    private_key = file(var.private_key_filename)
     host        = element(metal_device.fcs.*.access_public_ipv4, count.index)
   }
 
@@ -45,7 +45,7 @@ resource "null_resource" "consul_join_fcc" {
 
   connection {
     user        = "root"
-    private_key = file("${var.private_key_filename}")
+    private_key = file(var.private_key_filename)
     host        = element(metal_device.fcc.*.access_public_ipv4, count.index)
   }
 

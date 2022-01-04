@@ -14,7 +14,7 @@ These instances are then registered with the Service Mesh. Registration makes th
 
 ### Handling Failures
 
-As the physical servers "fail", the Service Mesh will discover and remove that instance from  the registry. Requests are then sent to the other remaining servers.
+As the physical servers "fail", the Service Mesh will discover and remove that instance from the registry. Requests are then sent to the other remaining servers.
 
 ## Next Steps
 
@@ -22,7 +22,7 @@ You've made it to the end!
 
 Where do we go from here?
 
-* Service Access Control
-* Authentication
-* Key Rotation
-* Encryption on Disk
+- Service Access Control
+- Authentication
+- Key Rotation
+- Encryption on Disk

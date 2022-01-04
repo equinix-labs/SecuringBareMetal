@@ -6,7 +6,7 @@ We've spun up three bare metal servers with Consul, the service mesh software, i
 
 As the software clusters itself, it'll elect a leader which handles all communications and passes along state to the other Consul servers.
 
-```
+```console
      +------------------------------+
      | consul02                     |
   +--+---------------------------+  |
@@ -28,8 +28,7 @@ As the software clusters itself, it'll elect a leader which handles all communic
 
 On the client side (FCS and FCC), the service mesh agent is run. This agent will communicate to the Consul elected leader.
 
-
-```
+```console
 +-------+------------+                   +------------+----------+
 |       |   fcs      |                   |  fcc       |          |
 |  fcs00|   8181     |                   |            | fcc00    |
@@ -52,7 +51,7 @@ On the client side (FCS and FCC), the service mesh agent is run. This agent will
 
 A side car is started up for each service and consumer that acts as a proxy authenticating and encrypting traffic across the network.
 
-```
+```console
 +--------+-----------+                   +------------+----------+
 |        |  fcs      |                   |  fcc       |          |
 |  fcs00 |  8181     |                   |            | fcc00    |
@@ -64,8 +63,6 @@ A side car is started up for each service and consumer that acts as a proxy auth
 +--------------------+                   +------------+----------+
 ```
 
-
-
 ## Next Steps
 
-Once you're done, proceed to [Lab13](Lab13.md)
+Once you're done, proceed to [ServiceMesh13](ServiceMesh13.md)
