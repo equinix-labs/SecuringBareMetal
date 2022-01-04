@@ -33,32 +33,32 @@ resource "metal_device" "fcs" {
   }
 
   provisioner "file" {
-    source      = "consul-client-config.json"
+    source      = "${path.module}/consul-client-config.json"
     destination = "/etc/consul.d/consul-client-config.json"
   }
 
   provisioner "file" {
-    source      = "FortuneService.json"
+    source      = "${path.module}/FortuneService.json"
     destination = "/etc/consul.d/FortuneService.json"
   }
 
   provisioner "file" {
-    source      = "FortuneSecureService.json"
+    source      = "${path.module}/FortuneSecureService.json"
     destination = "FortuneSecureService.json"
   }
 
   provisioner "file" {
-    source      = "StartConsulClient.sh"
+    source      = "${path.module}/StartConsulClient.sh"
     destination = "/usr/local/bin/StartConsul.sh"
   }
 
   provisioner "file" {
-    source      = "StartFortune.sh"
+    source      = "${path.module}/StartFortune.sh"
     destination = "/usr/local/bin/StartFortune.sh"
   }
 
   provisioner "file" {
-    source      = "consul_install.sh"
+    source      = "${path.module}/consul_install.sh"
     destination = "consul_install.sh"
   }
 
@@ -74,17 +74,17 @@ resource "metal_device" "fcs" {
   }
 
   provisioner "file" {
-    source      = "vault-client-config.json"
+    source      = "${path.module}/vault-client-config.json"
     destination = "/etc/vault.d/vault-client-config.json"
   }
 
   provisioner "file" {
-    source      = "StartVaultClient.sh"
+    source      = "${path.module}/StartVaultClient.sh"
     destination = "/usr/local/bin/StartVaultClient.sh"
   }
 
   provisioner "file" {
-    source      = "vault_install.sh"
+    source      = "${path.module}/vault_install.sh"
     destination = "vault_install.sh"
   }
 

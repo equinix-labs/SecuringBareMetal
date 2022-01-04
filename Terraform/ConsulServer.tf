@@ -30,17 +30,17 @@ resource "metal_device" "consul_server" {
   }
 
   provisioner "file" {
-    source      = "consul-server-config.json"
+    source      = "${path.module}/consul-server-config.json"
     destination = "/etc/consul.d/consul-server-config.json"
   }
 
   provisioner "file" {
-    source      = "StartConsulServer.sh"
+    source      = "${path.module}/StartConsulServer.sh"
     destination = "/usr/local/bin/StartConsul.sh"
   }
 
   provisioner "file" {
-    source      = "consul_install.sh"
+    source      = "${path.module}/consul_install.sh"
     destination = "consul_install.sh"
   }
 

@@ -30,17 +30,17 @@ resource "metal_device" "vault_server" {
   }
 
   provisioner "file" {
-    source      = "vault-server-config.json"
+    source      = "${path.module}/vault-server-config.json"
     destination = "/etc/vault.d/vault-server-config.json"
   }
 
   provisioner "file" {
-    source      = "StartVaultServer.sh"
+    source      = "${path.module}/StartVaultServer.sh"
     destination = "/usr/local/bin/StartVaultServer.sh"
   }
 
   provisioner "file" {
-    source      = "vault_install.sh"
+    source      = "${path.module}/vault_install.sh"
     destination = "vault_install.sh"
   }
 

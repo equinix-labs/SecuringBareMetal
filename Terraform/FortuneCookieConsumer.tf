@@ -28,17 +28,17 @@ resource "metal_device" "fcc" {
   }
 
   provisioner "file" {
-    source      = "consul-client-config.json"
+    source      = "${path.module}/consul-client-config.json"
     destination = "/etc/consul.d/consul-client-config.json"
   }
 
   provisioner "file" {
-    source      = "StartConsulClient.sh"
+    source      = "${path.module}/StartConsulClient.sh"
     destination = "/usr/local/bin/StartConsul.sh"
   }
 
   provisioner "file" {
-    source      = "consul_install.sh"
+    source      = "${path.module}/consul_install.sh"
     destination = "consul_install.sh"
   }
 
