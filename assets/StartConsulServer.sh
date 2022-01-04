@@ -4,6 +4,7 @@ if [ -z "$NUMBER_CONSUL_SERVERS" ]; then
 fi
 PRIVATE_IP=`hostname -I | cut -d ' ' -f 2`
 consul agent \
+  -server \
   -bootstrap-expect $NUMBER_CONSUL_SERVERS \
   -node=`hostname` \
   -bind $PRIVATE_IP \

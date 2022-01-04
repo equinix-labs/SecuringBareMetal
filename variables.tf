@@ -1,10 +1,10 @@
 
-variable "packet_auth_token" {
-  description = "Your Packet Authentication Token"
+variable "metal_auth_token" {
+  description = "Your Equinix Metal Authentication Token"
 }
 
-variable "packet_project_id" {
-  description = "Your Packet Project ID"
+variable "metal_project_id" {
+  description = "Your Equinix Metal Project ID"
 }
 
 variable "public_key_filename" {
@@ -17,10 +17,10 @@ variable "private_key_filename" {
   default     = "~/.ssh/id_rsa"
 }
 
-# for a full list of facilities, see: https://www.packet.com/developers/api/#facilities
-variable "facilities" {
-  description = "Prioritized list of facilities (data center) to deploy bare metal hosts"
-  default     = ["ewr1"]
+# for a full list of metros, see: https://metal.equinix.com/developers/docs/locations/metros/
+variable "metro" {
+  description = "Metro to deploy bare metal hosts"
+  default     = "sv"
 }
 
 variable "consul_count" {
@@ -44,13 +44,13 @@ variable "fcs_count" {
 }
 
 variable "plan" {
-  description = "Set the Packet server type"
-  default     = "t1.small.x86"
+  description = "Set the Equinix Metal server type"
+  default     = "c3.small.x86"
 }
 
 variable "operating_system" {
   description = "Base operating system to install on bare metal hosts"
-  default     = "ubuntu_16_04"
+  default     = "ubuntu_20_04"
 }
 
 variable "build" {
