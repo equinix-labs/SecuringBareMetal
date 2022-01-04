@@ -1,6 +1,6 @@
 resource "metal_device" "fcc" {
 
-  depends_on = ["metal_ssh_key.host_key"]
+  depends_on = [metal_ssh_key.host_key]
 
   project_id       = var.metal_project_id
   facilities       = var.facilities
@@ -14,13 +14,13 @@ resource "metal_device" "fcc" {
 
   connection {
     user        = "root"
+    host        = self.access_public_ipv4
     private_key = file("${var.private_key_filename}")
   }
 
   provisioner "remote-exec" {
     inline = [
       "ssh-keygen -A",
-      "sudo apt-add-repository ppa:zanchey/asciinema -y",
       "apt-get update -y >> apt.out",
       "apt-get install nginx tcpflow dnsutils zip asciinema -y >> apt.out",
       "mkdir -p /etc/consul.d",
@@ -33,7 +33,7 @@ resource "metal_device" "fcc" {
   }
 
   provisioner "file" {
-    source      = "StartConsul.sh"
+    source      = "StartConsulClient.sh"
     destination = "/usr/local/bin/StartConsul.sh"
   }
 

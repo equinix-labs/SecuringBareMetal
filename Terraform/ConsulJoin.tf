@@ -1,7 +1,7 @@
 
 resource "null_resource" "consul_join_server" {
 
-  depends_on = ["metal_device.consul_server"]
+  depends_on = [metal_device.consul_server]
 
   count = var.consul_count
 
@@ -20,9 +20,8 @@ resource "null_resource" "consul_join_server" {
 
 resource "null_resource" "consul_join_fortune" {
 
-  depends_on = ["metal_device.consul_server"]
-
-  count = var.fcs_count
+  depends_on = [metal_device.consul_server]
+  count      = var.fcs_count
 
   connection {
     user        = "root"
@@ -40,7 +39,7 @@ resource "null_resource" "consul_join_fortune" {
 
 resource "null_resource" "consul_join_fcc" {
 
-  depends_on = ["metal_device.consul_server"]
+  depends_on = [metal_device.consul_server]
 
   count = var.fcc_count
 
