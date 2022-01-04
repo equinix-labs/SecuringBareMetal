@@ -1,20 +1,20 @@
-resource "packet_device" "fcc" {
+resource "metal_device" "fcc" {
 
-  depends_on       = ["packet_ssh_key.host_key"]
+  depends_on = ["metal_ssh_key.host_key"]
 
-  project_id       = "${var.packet_project_id}"
-  facilities       = "${var.facilities}"
-  plan             = "${var.plan}"
-  operating_system = "${var.operating_system}"
-  hostname         = "${format("fcc%02d", count.index)}"
+  project_id       = var.metal_project_id
+  facilities       = var.facilities
+  plan             = var.plan
+  operating_system = var.operating_system
+  hostname         = format("fcc%02d", count.index)
 
-  count            = "${var.fcc_count}"
+  count = var.fcc_count
 
-  billing_cycle    = "hourly"
+  billing_cycle = "hourly"
 
   connection {
     user        = "root"
-    private_key = "${file("${var.private_key_filename}")}"
+    private_key = file("${var.private_key_filename}")
   }
 
   provisioner "remote-exec" {

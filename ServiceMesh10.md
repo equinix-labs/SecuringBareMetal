@@ -8,25 +8,26 @@ Terraform is used to deploy the physical infrastructure and install the required
 
 | Node          | CPU cores      | Memory (GB) | Boot (GB SSD) | Details
 |---------------|----------------|-------------|---------------|---------------------------------------------------------------
-| Consul{0-2}   | 4 x 2.4 GHz    | 8 GB        | 1 x 80        | [t1.small.x86](https://www.packet.com/cloud/servers/t1-small/)
-| fcs00         | 4 x 2.4 GHz    | 8 GB        | 1 x 80        | [t1.small.x86](https://www.packet.com/cloud/servers/t1-small/)
-| fcc01         | 4 x 2.4 GHz    | 8 GB        | 1 x 80        | [t1.small.x86](https://www.packet.com/cloud/servers/t1-small/)
+| Consul{0-2}   | 8 x 3.4 GHz    | 32 GB       | 2 x 480       | [c3.small.x86](https://metal.equinix.com/product/servers/c3-small/)
+| fcs00         | 8 x 3.4 GHz    | 32 GB       | 2 x 480       | [c3.small.x86](https://metal.equinix.com/product/servers/c3-small/)
+| fcc01         | 8 x 3.4 GHz    | 32 GB       | 2 x 480       | [c3.small.x86](https://metal.equinix.com/product/servers/c3-small/)
 
 ## Deploying with Terraform
 
-Terraform will deploy the requested infrastructure calling the appropriate bare metal cloud APIs at Packet. Terraform has a plugin architecture allowing it to "talk" to public and private cloud APIs (i.e. AWS, Azure, OpenStack, Packet, etc).
+Terraform will deploy the requested infrastructure calling the appropriate bare metal cloud APIs at Equinix Metal. Terraform has a plugin architecture allowing it to "talk" to public and private cloud APIs (i.e. AWS, Azure, OpenStack, Equinix Metal, etc).
 
 A Terraform configuration describes the final infrastructure state (i.e. number and type of physical or VM servers). Terraform uses this to determine how and in what order to deploy infrastructure.
 
 ## Consul Server Terraform Configuration
 
-The following deployes the "Consul Server" 
-```
-resource "packet_device" "consul_server" {
+The following deploys the "Consul Server"
 
-  depends_on       = ["packet_ssh_key.host_key"]
+```hcl
+resource "metal_device" "consul_server" {
 
-  project_id       = "${var.packet_project_id}"
+  depends_on       = ["metal_ssh_key.host_key"]
+
+  project_id       = "${var.metal_project_id}"
   facilities       = "${var.facilities}"
   plan             = "${var.plan}"
   operating_system = "${var.operating_system}"
@@ -40,11 +41,11 @@ resource "packet_device" "consul_server" {
 
 The "variables.tf" describes the configurable components of the final system such as the total number of servers to deploy, the size of each server, and the data center to use.
 
-```
-# for a full list of facilities, see: https://www.packet.com/developers/api/#facilities
+```hcl
+# for a full list of facilities, see: https://metal.equinix.com/developers/docs/locations/facilities/
 variable "facilities" {
   description = "Prioritized list of facilities (data center) to deploy bare metal hosts"
-  default     = ["ewr1"]
+  default     = ["sv15"]
 }
 
 variable "consul_count" {
@@ -63,13 +64,13 @@ variable "fcs_count" {
 }
 
 variable "plan" {
-  description = "Set the Packet server type"
-  default     = "t1.small.x86"
+  description = "Set the Equinix Metal server type"
+  default     = "c3.small.x86"
 }
 
 variable "operating_system" {
   description = "Base operating system to install on bare metal hosts"
-  default     = "ubuntu_16_04"
+  default     = "ubuntu_20_04"
 }
 
 variable "build" {
