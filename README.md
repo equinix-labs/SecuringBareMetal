@@ -2,6 +2,9 @@
 
 This repository is [Experimental](https://github.com/equinix-labs/equinix-labs/blob/main/experimental-statement.md) meaning that it's based on untested ideas or techniques and not yet established or finalized or involves a radically new and innovative style! This means that support is best effort (at best!) and we strongly encourage you to NOT use this in production.
 
+# Note
+With the upcoming EoL of Equinix Metal on June 30, 2026, this repo is being archived on February 28, 2026.
+
 # Securing Baremetal
 
 Zero Trust is an information security mantra that implements security controls such as encryption so that the underlying infrastructure (hardware, network, software, etc) need not be implicitly trusted. For many organizations, this extends into the cloud where this philosophy is applied to workloads running in public, virtualized clouds. While there are security controls in place in the underlying cloud infrastructure, many organizations follow the Zero Trust model to add in an extra layer of security. This repo follows these ideas to take an unsecure application, the Fortune Cookie Micro Service, running atop a bare metal cloud and add in the additional security layers to protect the data on disk and in motion.
